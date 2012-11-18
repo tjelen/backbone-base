@@ -1,5 +1,9 @@
 # Backbone base
 
+Various Backbone.js augmentations and helper classes.
+
+## Features
+
 * Global application namespace and event hub
 * \_super\_ method for calling methods in superclass
 * Minimal Controller class, for encapsulating logic that involves several view or models.
