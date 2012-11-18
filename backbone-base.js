@@ -65,6 +65,7 @@ define([
     template: null,
     initialize: function () {
       this.render()
+      this.bind && this.bind()
     },
     render: function () {
       var data = this.model.toJSON()
@@ -95,7 +96,7 @@ define([
     initialize: function (options) {
       this.views = {}
       this.collection.each(this.onAdd, this)
-      this.bind()
+      this.bind && this.bind()
     },
     
     onAdd: function (model, coll, options) {
