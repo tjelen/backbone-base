@@ -1,5 +1,5 @@
 /**
- * Backbone base - various Backbone.js augmentations
+ * Backbone-base .. various Backbone.js augmentations
  *
  */
 define([
@@ -15,7 +15,9 @@ define([
     }
   })
   
-  // global app namespace (also serves as a global messaging hub)
+  /**  
+   * Create global application namespace, which also serves as a global messaging hub
+   */
   var base = window.base = _.extend((window.base || {}), Backbone.Events)
   
   base.$ = $
@@ -29,7 +31,10 @@ define([
   base.Collection = Backbone.Collection
   base.Events = Backbone.Events
   
-  // Controller: a plain class used for binding multiple views
+
+  /**
+   * Controller: a plain class used for binding multiple views and/or model
+   */
   var Controller = base.Controller = function (options) {
     this.configure(options || {})
     this.initialize.apply(this, arguments)
@@ -52,7 +57,10 @@ define([
   // take the extend method from Backbone.Model
   Controller.extend = Backbone.Model.extend
   
-  // custom base view class
+  /**
+   * Base view class
+   * Has additional 'unbind' method for removing all event handlers
+   */
   base.View = Backbone.View.extend({
     template: null,
     initialize: function () {
@@ -74,9 +82,15 @@ define([
       base.off(null, null, this)
     }
   })
-  
+
+  /**
+   * Collection View
+   * view that contains children views based on collection
+   * and synchronizes itself with collection changes (even sorting and reset)
+   */
   base.CollectionView = base.View.extend({
-    itemView: base.View,
+
+    itemView: base.View, // class for creating child views
     
     initialize: function (options) {
       this.views = {}
