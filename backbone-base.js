@@ -22,12 +22,8 @@ define([
   
   base.$ = $
   base._ = _
-  base.mt = mt
-  
-  base.models = {}
-  base.views = {}
-  base.collections = {}
 
+  base.extend = Backbone.Model.extend
   base.Collection = Backbone.Collection
   base.Events = Backbone.Events
   
@@ -54,8 +50,7 @@ define([
     }
   })
   
-  // take the extend method from Backbone.Model
-  Controller.extend = Backbone.Model.extend
+  Controller.extend = base.extend
   
   /**
    * Base view class
